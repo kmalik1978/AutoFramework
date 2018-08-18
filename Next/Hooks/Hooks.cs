@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Reflection;
+using System.IO;
 using TechTalk.SpecFlow;
 using Next.Browsers;
 using System.Configuration;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
+using Next.Utilities;
 
 namespace Next.Hooks
 {
@@ -17,10 +18,12 @@ namespace Next.Hooks
 		private static ExtentTest scenario;
 		private static ExtentReports extent;
 
-        [BeforeTestRun]
-		public static void InitializeReport()
+		private static string reportNm = null;
+
+		[BeforeTestRun]
+		public static void InitializeReport(object sender, EventArgs e)
 		{
-			string reportNm = DateTime.Now.ToString("yyyyMMddHHmmss");
+			reportNm = DateTime.Now.ToString("yyyyMMddHHmmss");
 			var htmlReporter = new ExtentHtmlReporter(@"C:\Framework\AutoFramework\Next\TestResults\TestRun_" +reportNm + ".html");
 			htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
 			extent = new ExtentReports();
@@ -36,11 +39,9 @@ namespace Next.Hooks
 		[BeforeFeature]
 		public static void BeforeFeature()
 		{
-			featureName = extent.CreateTest<Feature>(FeatureContext.Current.FeatureInfo.Title);
-			
+			featureName = extent.CreateTest<Feature>(FeatureContext.Current.FeatureInfo.Title);	
 		}
 
-		
 
         [BeforeScenario]
         public void BeforeScenario()
@@ -61,7 +62,7 @@ namespace Next.Hooks
 		}
 
 		[AfterStep]
-		public static void InsertReportingSteps()
+		public static void InsertReportingSteps(object sender, EventArgs e)
 		{
 			var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
 
@@ -85,7 +86,12 @@ namespace Next.Hooks
 				else if (stepType == "When")
 					scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
 				else if (stepType == "Then")
-					scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
+				{
+					scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail((ScenarioContext.Current.TestError.Message)
+																							+ (ScenarioContext.Current.TestError.StackTrace));
+					string screenShotPath = GetScreenShot.Capture(BrowserFactory.Driver, "ScreenShotName");
+					scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioStepContext.Current.StepInfo.Text).AddScreenCaptureFromPath(screenShotPath);
+				}
 				else if (stepType == "And")
 					scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
 				else if (stepType == "But")

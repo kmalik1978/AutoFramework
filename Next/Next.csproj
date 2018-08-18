@@ -101,6 +101,11 @@
   <ItemGroup>
     <Compile Include="Browsers\BrowserFactory.cs" />
     <Compile Include="Extensions\Element_Extensions.cs" />
+    <Compile Include="Features\LoginAgain.feature.cs">
+      <DependentUpon>LoginAgain.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,6 +121,7 @@
     <Compile Include="TestCases\LogInTestWithPageObject.cs" />
     <Compile Include="TestData\ExcelDataAccess.cs" />
     <Compile Include="TestData\UserData.cs" />
+    <Compile Include="Utilities\GetScreenshot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -123,6 +129,10 @@
     </None>
     <None Include="Configurations\Environment.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\LoginAgain.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoginAgain.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
