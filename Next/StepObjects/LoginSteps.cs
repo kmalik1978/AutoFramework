@@ -4,6 +4,9 @@ using NUnit.Framework;
 using Next.PageObjects;
 using System.Configuration;
 using Next.Browsers;
+using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Gherkin.Model;
 
 namespace Next.StepObjects
 {
@@ -15,6 +18,18 @@ namespace Next.StepObjects
         {
 			// BrowserFactory.InitBrowser("Chrome");
 			// BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
+
+			////feature
+			//var feature = extent.CreateTest<Feature>("Login");
+
+			////scenario
+			//var scenario = feature.CreateNode<Scenario>("LoginToNext");
+
+			////steps
+			//scenario.CreateNode<Given>("user is on the homepage");
+
+			
+			
 			string browserURL = BrowserFactory.Driver.Url.ToLower();
 			Console.WriteLine("BROWSER URL IS: " + browserURL);
 			Assert.AreEqual(browserURL, ConfigurationManager.AppSettings["URL"]);
@@ -37,5 +52,18 @@ namespace Next.StepObjects
         {
             Page.Login.ClickSignIn();
         }
-    }
+
+		[Then(@"then exits")]
+		public void ThenThenExits()
+		{
+			ScenarioContext.Current.Pending();
+		}
+
+		[Then(@"clicks Help button")]
+		public void ThenClicksHelpButton()
+		{
+			Page.Login.ClickHelp();
+		}
+
+	}
 }

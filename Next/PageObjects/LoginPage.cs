@@ -25,17 +25,24 @@ namespace Next.PageObjects
         public IWebElement SignIn { get; set; }
 
 
-        public void EnterLoginDetails(string testName)
+		[FindsBy(How = How.CssSelector, Using = ".one>axxx")]
+		public IWebElement HelpBtn { get; set; }
+
+		public void EnterLoginDetails(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
             Username.EnterText(userData.username, "UserName");
             Password.EnterText(userData.password, "Password");
-            //SignIn.ClickOnIt("SignIn");
         }
 
         public void ClickSignIn()
         {
-            SignIn.ClickOnIt("SignIn");
+            SignIn.ClickOnIt("Sign In Now");
         }
-    }
+
+		public void ClickHelp()
+		{
+			HelpBtn.ClickOnIt("Help Button");
+		}
+	}
 }
