@@ -34,6 +34,8 @@ namespace Next.Hooks
 		public static void tearDown()
 		{
 			extent.Flush();
+			BrowserFactory.CloseAllDrivers();
+			Console.WriteLine("Browser Closed");
 		}
 
 		[BeforeFeature]
@@ -48,17 +50,17 @@ namespace Next.Hooks
         {
 			//TODO: implement logic that has to run before executing each scenario
 			BrowserFactory.InitBrowser("Chrome");
+			BrowserFactory.Driver.Manage().Cookies.DeleteAllCookies();
 			BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
 			scenario = featureName.CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title);
 		}
 
         [AfterScenario]
-		[Scope(Tag = "closebrowser")]
+		//[Scope(Tag = "closebrowser")]
 		public void AfterScenario()
         {
 			//TODO: implement logic that has to run after executing each scenario
-			BrowserFactory.CloseAllDrivers();
-			Console.WriteLine("Browser Closed");
+
 		}
 
 		[AfterStep]

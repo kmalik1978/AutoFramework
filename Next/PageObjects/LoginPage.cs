@@ -20,8 +20,9 @@ namespace Next.PageObjects
         public IWebElement Password { get; set; }
 
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='pri']")]
-        [CacheLookup]
+        //[FindsBy(How = How.XPath, Using = ".//*[@id='pri']")]
+		[FindsBy(How = How.Name, Using = "SignInNow")]
+		[CacheLookup]
         public IWebElement SignIn { get; set; }
 
 

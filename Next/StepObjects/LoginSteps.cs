@@ -59,7 +59,7 @@ namespace Next.StepObjects
 			ScenarioContext.Current.Pending();
 		}
 
-		[Then(@"clicks Help button")]
+		[Then(@"user clicks Help button")]
 		public void ThenClicksHelpButton()
 		{
 			Page.Login.ClickHelp();

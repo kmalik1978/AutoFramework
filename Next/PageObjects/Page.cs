@@ -21,5 +21,10 @@ namespace Next.PageObjects
         {
             get { return GetPage<LoginPage>(); }
         }
-    }
+
+		public static MyAccountPage MyAccount
+		{
+			get { return GetPage<MyAccountPage>(); }
+		}
+	}
 }

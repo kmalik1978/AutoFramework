@@ -1,4 +1,4 @@
-﻿Feature: Login
+﻿Feature: LoginAgain
 	Login to www.next.co.uk
 
 
@@ -23,7 +23,7 @@ Scenario: LoginToNext3
 	When user enters username and password
 	Then clicks Help button
 
-@closebrowser
+
 Scenario: LoginToNext4
 	Given user is on the homepage
 	And selects MyAccount to login
