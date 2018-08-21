@@ -9,10 +9,10 @@ namespace Next.Utilities
 	{
 		public static string Capture(IWebDriver driver, string screenShotName)
 		{
+			DateTime date = DateTime.Now.ToUniversalTime();
 			ITakesScreenshot ts = (ITakesScreenshot)driver;
 			Screenshot screenshot = ts.GetScreenshot();
-			//string localpath = Path.Combine (ConfigurationManager.AppSettings["ScreenShotsPath"], "Capture");
-			string captureFileNm = DateTime.Now.ToString("HHmmss");
+			string captureFileNm = DateTime.Now.ToString("yyyyMMddHHmmssfff");
 			string localpath = Path.Combine(ConfigurationManager.AppSettings["ScreenShotsPath"], captureFileNm);
 			screenshot.SaveAsFile(localpath, ScreenshotImageFormat.Png);
 			return localpath;

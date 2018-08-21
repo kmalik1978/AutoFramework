@@ -1,4 +1,5 @@
-﻿Feature: LoginAgain
+﻿#login tests
+Feature: LoginAgain
 	Login to www.next.co.uk
 
 
@@ -21,7 +22,7 @@ Scenario: LoginToNext3
 	Given user is on the homepage
 	And selects MyAccount to login
 	When user enters username and password
-	Then clicks Help button
+	Then user clicks Help button
 
 
 Scenario: LoginToNext4
@@ -29,4 +30,3 @@ Scenario: LoginToNext4
 	And selects MyAccount to login
 	When user enters username and password
 	Then user signs in
-	Then clicks Help button

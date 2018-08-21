@@ -42,7 +42,7 @@ namespace Next.StepObjects
 		[Then(@"enters phone number")]
 		public void ThenEntersPhoneNumber()
 		{
-			Thread.Sleep(5000);
+			Thread.Sleep(3000);
 			//SwitchWindows.SwitchToNewWindow();
 			BrowserFactory.Driver.SwitchTo().DefaultContent();
 			string mainWindowHandle = BrowserFactory.Driver.CurrentWindowHandle;
