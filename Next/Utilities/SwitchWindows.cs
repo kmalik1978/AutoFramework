@@ -11,15 +11,15 @@ namespace Next.Utilities
 	class SwitchWindows
 	{
 
-		private static string mainWindowHandle = BrowserFactory.Driver.CurrentWindowHandle;
+		private static string mainWindowHandle = BrowserDriver.Driver.CurrentWindowHandle;
 
 		public static void SwitchToNewWindow()
 		{
-			BrowserFactory.Driver.SwitchTo().DefaultContent();
-			//string mainWindowHandle = BrowserFactory.Driver.CurrentWindowHandle;
+			BrowserDriver.Driver.SwitchTo().DefaultContent();
+			//string mainWindowHandle = BrowserDriver.Driver.CurrentWindowHandle;
 			Console.WriteLine("deafult window = " + mainWindowHandle);
 
-			ReadOnlyCollection<string> windowHandles = BrowserFactory.Driver.WindowHandles;
+			ReadOnlyCollection<string> windowHandles = BrowserDriver.Driver.WindowHandles;
 			String newWindowHandle = "";
 			foreach (string handle in windowHandles)
 			{
@@ -30,14 +30,14 @@ namespace Next.Utilities
 				}
 			}
 
-			BrowserFactory.Driver.SwitchTo().Window(newWindowHandle);
-			Console.WriteLine("new window = " + BrowserFactory.Driver.Url);
+			BrowserDriver.Driver.SwitchTo().Window(newWindowHandle);
+			Console.WriteLine("new window = " + BrowserDriver.Driver.Url);
 		}
 
 		public static void SwitchToDefaultWindow()
 		{
-			BrowserFactory.Driver.SwitchTo().DefaultContent();
-			Console.WriteLine(" window url = " + BrowserFactory.Driver.Url);
+			BrowserDriver.Driver.SwitchTo().DefaultContent();
+			Console.WriteLine(" window url = " + BrowserDriver.Driver.Url);
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace Next.PageObjects
         private static T GetPage<T>() where T : new()
         {
             var page = new T();
-            PageFactory.InitElements(BrowserFactory.Driver, page);
+            PageFactory.InitElements(BrowserDriver.Driver, page);
             return page;
         }
 

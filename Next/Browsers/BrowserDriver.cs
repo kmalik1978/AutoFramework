@@ -7,7 +7,7 @@ using OpenQA.Selenium.IE;
 
 namespace Next.Browsers
 {
-    class BrowserFactory
+    class BrowserDriver
     {
         private static readonly IDictionary<string, IWebDriver> Drivers = new Dictionary<string, IWebDriver>();
         private static IWebDriver driver;

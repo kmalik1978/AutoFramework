@@ -33,7 +33,7 @@ namespace Next.StepObjects
 		[Then(@"user clicks on call back")]
 		public void ThenUserClicksOnCallBack()
 		{
-		//	string mainWindowHandle = BrowserFactory.Driver.CurrentWindowHandle;
+		//	string mainWindowHandle = BrowserDriver.Driver.CurrentWindowHandle;
 		//	Console.WriteLine("deafult window = " + mainWindowHandle);
 
 			Page.MyAccount.RequestCallBack.ClickOnIt("request call back");
@@ -44,11 +44,11 @@ namespace Next.StepObjects
 		{
 			Thread.Sleep(3000);
 			//SwitchWindows.SwitchToNewWindow();
-			BrowserFactory.Driver.SwitchTo().DefaultContent();
-			string mainWindowHandle = BrowserFactory.Driver.CurrentWindowHandle;
+			BrowserDriver.Driver.SwitchTo().DefaultContent();
+			string mainWindowHandle = BrowserDriver.Driver.CurrentWindowHandle;
 			Console.WriteLine("deafult window = " + mainWindowHandle);
 
-			ReadOnlyCollection<string> windowHandles = BrowserFactory.Driver.WindowHandles;
+			ReadOnlyCollection<string> windowHandles = BrowserDriver.Driver.WindowHandles;
 			String newWindowHandle = "";
 			foreach (string handle in windowHandles)
 			{
@@ -59,11 +59,11 @@ namespace Next.StepObjects
 				}
 			}
 
-			BrowserFactory.Driver.SwitchTo().Window(newWindowHandle);
-			Console.WriteLine("window  url= " + BrowserFactory.Driver.Url);
+			BrowserDriver.Driver.SwitchTo().Window(newWindowHandle);
+			Console.WriteLine("window  url= " + BrowserDriver.Driver.Url);
 			Page.MyAccount.CallBackCustNum.SendKeys("PL191876");
-			BrowserFactory.Driver.SwitchTo().Window(mainWindowHandle);
-			Console.WriteLine("window url= " + BrowserFactory.Driver.Url);
+			BrowserDriver.Driver.SwitchTo().Window(mainWindowHandle);
+			Console.WriteLine("window url= " + BrowserDriver.Driver.Url);
 
 			//SwitchWindows.SwitchToDefaultWindow();
 		}

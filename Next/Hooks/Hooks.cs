@@ -34,7 +34,7 @@ namespace Next.Hooks
 		public static void tearDown()
 		{
 			extent.Flush();
-			BrowserFactory.CloseAllDrivers();
+			BrowserDriver.CloseAllDrivers();
 			Console.WriteLine("Browser Closed");
 		}
 
@@ -49,9 +49,9 @@ namespace Next.Hooks
         public void BeforeScenario()
         {
 			//TODO: implement logic that has to run before executing each scenario
-			BrowserFactory.InitBrowser("Chrome");
-			BrowserFactory.Driver.Manage().Cookies.DeleteAllCookies();
-			BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
+			BrowserDriver.InitBrowser("Chrome");
+			BrowserDriver.Driver.Manage().Cookies.DeleteAllCookies();
+			BrowserDriver.LoadApplication(ConfigurationManager.AppSettings["URL"]);
 			scenario = featureName.CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title);
 		}
 
@@ -91,7 +91,7 @@ namespace Next.Hooks
 				{
 					scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail((ScenarioContext.Current.TestError.Message)
 																							+ (ScenarioContext.Current.TestError.StackTrace));
-					string screenShotPath = GetScreenShot.Capture(BrowserFactory.Driver, "ScreenShotName");
+					string screenShotPath = GetScreenShot.Capture(BrowserDriver.Driver, "ScreenShotName");
 					scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioStepContext.Current.StepInfo.Text).AddScreenCaptureFromPath(screenShotPath);
 				}
 				else if (stepType == "And")

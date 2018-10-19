@@ -11,14 +11,14 @@ namespace Next.TestCases
         public void TestPageObjects()
         {
 
-            BrowserFactory.InitBrowser("Chrome");
-            BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
+            BrowserDriver.InitBrowser("Chrome");
+            BrowserDriver.LoadApplication(ConfigurationManager.AppSettings["URL"]);
 
             Page.Home.ClickOnMyAccount();
             Page.Login.EnterLoginDetails("LogInTestWithPageObjects");
             Page.Login.ClickSignIn();
 
-            BrowserFactory.CloseAllDrivers();
+            BrowserDriver.CloseAllDrivers();
         }
     }
 }

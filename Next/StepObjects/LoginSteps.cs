@@ -4,8 +4,6 @@ using NUnit.Framework;
 using Next.PageObjects;
 using System.Configuration;
 using Next.Browsers;
-using AventStack.ExtentReports.Reporter;
-using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 
 namespace Next.StepObjects
@@ -16,21 +14,7 @@ namespace Next.StepObjects
         [Given(@"user is on the homepage")]
         public void UserIsOnTheHomepage()
         {
-			// BrowserFactory.InitBrowser("Chrome");
-			// BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-
-			////feature
-			//var feature = extent.CreateTest<Feature>("Login");
-
-			////scenario
-			//var scenario = feature.CreateNode<Scenario>("LoginToNext");
-
-			////steps
-			//scenario.CreateNode<Given>("user is on the homepage");
-
-			
-			
-			string browserURL = BrowserFactory.Driver.Url.ToLower();
+			string browserURL = BrowserDriver.Driver.Url.ToLower();
 			Console.WriteLine("BROWSER URL IS: " + browserURL);
 			Assert.AreEqual(browserURL, ConfigurationManager.AppSettings["URL"]);
 		}
