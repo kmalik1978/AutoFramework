@@ -25,13 +25,13 @@ namespace Next.TestCases
             // Find the element that's ID attribute is 'log' (Username)
             // Enter Username on the element found by above desc.
             // driver.FindElement(By.Id("log")).SendKeys("testuser_1");
-            driver.FindElement(By.Id("EmailOrAccountNumber")).SendKeys("kadir.h.malik@gmail.com");
+            driver.FindElement(By.Id("EmailOrAccountNumber")).SendKeys("test@gmail.com");
 
 
             // Find the element that's ID attribute is 'pwd' (Password)
             // Enter Password on the element found by the above desc.
             //driver.FindElement(By.Id("pwd")).SendKeys("Test@123");
-            driver.FindElement(By.Id("Password")).SendKeys("Khm881978");
+            driver.FindElement(By.Id("Password")).SendKeys("test123");
 
 
             // Now submit the form.
